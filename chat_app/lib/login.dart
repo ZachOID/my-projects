@@ -15,12 +15,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Chat Demo',
+      title: 'Chat',
       theme: ThemeData(
         primaryColor: themeColor,
       ),
       home: LoginScreen(title: 'CHAT DEMO'),
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: true,
     );
   }
 }
@@ -65,7 +65,7 @@ class LoginScreenState extends State<LoginScreen> {
     }
 
     this.setState(() {
-      isLoading = false;
+      isLoading = true;
     });
   }
 
