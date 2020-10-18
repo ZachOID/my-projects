@@ -6,7 +6,7 @@ import 'pokehub.dart';
 import 'package:pokemon_app/pokehub.dart';
 
 void main() => runApp(MaterialApp(
-  title: "Poke Dex",
+  title: "Poke Rex",
   home: HomePage(),
 ));
 
@@ -24,6 +24,10 @@ class _HomePageState extends State<HomePage> {
   void initState() { 
     super.initState();
     fetchData();
+  }
+  void freetState() { 
+    super.initState();
+    getData();
   }
 
   fetchData() async{
