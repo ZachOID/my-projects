@@ -25,10 +25,10 @@ class Chat extends StatelessWidget {
     return new Scaffold(
       appBar: new AppBar(
         title: new Text(
-          'CHAT',
-          style: TextStyle(color: primaryColor, fontWeight: FontWeight.bold),
+          'Chat',
+          style: TextStyle(color: secondaryColor, fontWeight: FontWeight.light),
         ),
-        centerTitle: true,
+        centerTitle: false,
       ),
       body: new ChatScreen(
         peerId: peerId,
@@ -54,6 +54,7 @@ class ChatScreenState extends State<ChatScreen> {
   String peerId;
   String peerAvatar;
   String id;
+  String uuid;
 
   var listMessage;
   String groupChatId;
@@ -75,8 +76,8 @@ class ChatScreenState extends State<ChatScreen> {
 
     groupChatId = '';
 
-    isLoading = false;
-    isShowSticker = false;
+    isLoading = true;
+    isShowSticker = true;
     imageUrl = '';
 
     readLocal();
@@ -86,7 +87,7 @@ class ChatScreenState extends State<ChatScreen> {
     if (focusNode.hasFocus) {
       // Hide sticker when keyboard appear
       setState(() {
-        isShowSticker = false;
+        isShowSticker = true;
       });
     }
   }
@@ -110,7 +111,7 @@ class ChatScreenState extends State<ChatScreen> {
 
     if (imageFile != null) {
       setState(() {
-        isLoading = true;
+        isLoading = false;
       });
       uploadFile();
     }
@@ -133,7 +134,7 @@ class ChatScreenState extends State<ChatScreen> {
       imageUrl = downloadUrl;
       setState(() {
         isLoading = false;
-        onSendMessage(imageUrl, 1);
+        onSendMessage(imageUrl, 0);
       });
     }, onError: (err) {
       setState(() {
@@ -166,7 +167,7 @@ class ChatScreenState extends State<ChatScreen> {
           },
         );
       });
-      listScrollController.animateTo(0.0, duration: Duration(milliseconds: 300), curve: Curves.easeOut);
+      listScrollController.animateTo(0.0, duration: Duration(milliseconds: 800), curve: Curves.easeOut);
     } else {
       Fluttertoast.showToast(msg: 'Nothing to send');
     }
@@ -199,8 +200,8 @@ class ChatScreenState extends State<ChatScreen> {
                               child: CircularProgressIndicator(
                                 valueColor: AlwaysStoppedAnimation<Color>(themeColor),
                               ),
-                              width: 200.0,
-                              height: 200.0,
+                              width: 500.0,
+                              height: 800.0,
                               padding: EdgeInsets.all(70.0),
                               decoration: BoxDecoration(
                                 color: greyColor2,
@@ -212,7 +213,7 @@ class ChatScreenState extends State<ChatScreen> {
                             errorWidget: (context, url, error) => Material(
                               child: Image.asset(
                                 'images/img_not_available.jpeg',
-                                width: 200.0,
+                                width: 250.0,
                                 height: 200.0,
                                 fit: BoxFit.cover,
                               ),
@@ -233,7 +234,7 @@ class ChatScreenState extends State<ChatScreen> {
                           Navigator.push(
                               context, MaterialPageRoute(builder: (context) => FullPhoto(url: document['content'])));
                         },
-                        padding: EdgeInsets.all(0),
+                        padding: EdgeInsets.all(5),
                       ),
                       margin: EdgeInsets.only(bottom: isLastMessageRight(index) ? 20.0 : 10.0, right: 10.0),
                     )
@@ -528,7 +529,7 @@ class ChatScreenState extends State<ChatScreen> {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       ),
       decoration: new BoxDecoration(
-          border: new Border(top: new BorderSide(color: greyColor2, width: 0.5)), color: Colors.white),
+          border: new Border(top: new BorderSide(color: greyColor2, width: 0.5)), color: Colors.red),
       padding: EdgeInsets.all(5.0),
       height: 180.0,
     );
