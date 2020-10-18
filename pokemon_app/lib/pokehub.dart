@@ -32,6 +32,8 @@ class Pokemon {
   String candy;
   int candyCount;
   String egg;
+  String milk;
+  String bread;
   String spawnChance;
   String avgSpawns;
   String spawnTime;
