@@ -37,36 +37,36 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor :  Colors.redAccent[700] ,
+      backgroundColor :  Colors.redAccent[1000] ,
       appBar: AppBar(
         elevation: 0.0,
         title: Center(
-          child: Text("Poke Dex",style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30),)
+          child: Text("Poke Rex",style: TextStyle(fontWeight: FontWeight.light, fontSize: 70),)
           ),
-        backgroundColor: Colors.redAccent[700],
+        backgroundColor: Colors.redAccent[1000],
       ),
       body: pokeHub == null?Center(child : CircularProgressIndicator() ):
       GridView.count(
-        crossAxisCount: 2,
+        crossAxisCount: 7,
         children: 
         pokeHub.pokemon.map((poke) => Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.all(8.0),
           child: InkWell(
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>PokeDetail(
-                pokemon: poke,
+                pokemon: rock,
               )));
             },
             child: Hero(
               tag: poke.img,
               child: Card(
-                elevation: 5.0,
+                elevation: 6.0,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children:<Widget>[
                     Container(
                       height: 100,
-                      width: 100,
+                      width: 200,
                       decoration: BoxDecoration(
                         image : DecorationImage(image: NetworkImage(poke.img))
                       ),
@@ -74,7 +74,7 @@ class _HomePageState extends State<HomePage> {
                     Text(
                       poke.name,
                       style: TextStyle(
-                        fontSize: 20.0, fontWeight: FontWeight.bold,
+                        fontSize: 30.0, fontWeight: FontWeight.light,
                       ),
                     )
                   ]
